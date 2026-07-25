@@ -1,0 +1,27 @@
+# portal/.htaccess
+#
+# VULN NOTES - this file is intentionally minimal:
+#
+# #6  Directory Listing Enabled
+#     No "Options -Indexes" directive - if a directory has no index.php,
+#     Apache will list its contents (e.g. try /portal/uploads/profile_photos/).
+#
+# #1/#17/#18/#19  Missing security headers
+#     No Header directives for Content-Security-Policy, X-Frame-Options,
+#     X-Content-Type-Options, Strict-Transport-Security, Referrer-Policy.
+#     A hardened version of this file would add, e.g.:
+#         Header set X-Frame-Options "DENY"
+#         Header set X-Content-Type-Options "nosniff"
+#         Header set Content-Security-Policy "default-src 'self'"
+#         Header set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+#     None of that is present here on purpose.
+#
+# #15 Missing HTTPS Enforcement
+#     No RewriteEngine/RewriteCond redirecting http:// to https://.
+#
+# #14 (supporting) uploads/ has no handler restriction here either -
+#     a hardened version would disable PHP execution inside uploads/:
+#         <Directory "uploads">
+#             php_flag engine off
+#         </Directory>
+#     Intentionally omitted - see VULNERABILITIES.md #14.

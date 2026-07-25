@@ -1,0 +1,8 @@
+# horizon/.htaccess
+#
+# VULN NOTES - intentionally minimal, consistent with portal/.htaccess
+# and crestview/.htaccess:
+# #6  Directory Listing Enabled - no "Options -Indexes"
+# #1/#17/#18/#19  No security headers set here
+# #15 No HTTPS redirect
+# See VULNERABILITIES.md for details and hardened alternatives.
